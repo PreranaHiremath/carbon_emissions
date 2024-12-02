@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emission Dashboard</title>
+</head>
+<body>
+    <h1>Emission Results Dashboard</h1>
+    <table border="1">
+        <tr>
+            <th>Coal Production</th>
+            <th>Methane Emissions</th>
+            <th>CO2 Emissions</th>
+            <th>Total Emissions</th>
+            <th>Timestamp</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td>{{ result.coal_production }}</td>
+            <td>{{ result.methane_emissions }}</td>
+            <td>{{ result.co2_emissions }}</td>
+            <td>{{ result.total_emissions }}</td>
+            <td>{{ result.timestamp }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

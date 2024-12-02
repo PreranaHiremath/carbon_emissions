@@ -14,5 +14,6 @@ urlpatterns = [
     path('api/afforestation-plans/', AfforestationPlanListView.as_view(), name='afforestation_plans_list'),
     path('api/emission-estimation/', EmissionEstimationView.as_view(), name='emission_estimation'),
     path('api/emissions-visualization/', EmissionVisualizationView.as_view(), name='emissions_visualization'),
-    
+    # path('dashboard/', dashboard, name='dashboard'),
+    # path('download-report/', download_report, name='download_report'),
 ]

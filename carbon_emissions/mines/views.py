@@ -1,7 +1,7 @@
 from django.shortcuts import render
 # Create your views here.
 from rest_framework import viewsets
-from .models import CoalMine, Emission
+from .models import CoalMine, Emission,EmissionResult
 from .serializers import CoalMineSerializer, EmissionSerializer
 import matplotlib.pyplot as plt
 from django.http import HttpResponse
@@ -39,6 +39,10 @@ def visualize_emissions(request):
             emission = next((e for e in emissions if e['year'] == year and e['coal_mine__name'] == mine), None)
             co2_data[mine].append(emission['co2_emissions'] if emission else 0)
             methane_data[mine].append(emission['methane_emissions'] if emission else 0)
+
+def dashboard(request):
+    results = EmissionResult.objects.all()
+    return render(request, 'dashboard.html', {'results': results})
 
 #     # Plot
 #     plt.figure(figsize=(12, 6))
@@ -197,3 +201,4 @@ class EmissionVisualizationView(APIView):
         # Return the plot as an HTTP response
         with open('emissions_plot.png', 'rb') as f:
             return HttpResponse(f.read(), content_type="image/png")
+
