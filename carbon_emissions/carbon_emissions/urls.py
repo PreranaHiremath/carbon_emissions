@@ -18,18 +18,15 @@ from django.contrib import admin
 from django.urls import path
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
-from mines.views import CoalMineViewSet, EmissionViewSet
 from mines.views import visualize_emissions
 
 
-router = DefaultRouter()
-router.register(r'coalmines', CoalMineViewSet)
-router.register(r'emissions', EmissionViewSet)
+
+# router = DefaultRouter()
+# router.register(r'coalmines', CoalMineCreateView)
+# router.register(r'emissions', EmissionViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls)),
-    path('visualize/', visualize_emissions, name="visualize_emissions"),  # Visualization endpoint
-    path('', include('mines.urls')),
+    path('api/', include('mines.urls')),
 ]

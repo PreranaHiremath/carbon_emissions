@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+from decouple import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'mines',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -50,6 +54,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+CORS_ALLOW_ALL_ORIGINS = True 
 
 ROOT_URLCONF = 'carbon_emissions.urls'
 
@@ -81,15 +91,23 @@ WSGI_APPLICATION = 'carbon_emissions.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'CarbonEmissions',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Prerana',
+#         'HOST': 'localhost',    # Or your PostgreSQL server IP
+#         'PORT': '',         # Default PostgreSQL port
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'CarbonEmissions',
-        'USER': 'postgres',
-        'PASSWORD': 'Prerana',
-        'HOST': 'localhost',    # Or your PostgreSQL server IP
-        'PORT': '',         # Default PostgreSQL port
-    }
+    'default': dj_database_url.parse(
+        config("projectUrl"),
+        conn_max_age=600,
+        ssl_require=True
+    )    
 }
 
 
@@ -144,3 +162,6 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.IsAuthenticated',
     ],
 }
+
+
+
