@@ -6,19 +6,23 @@ from .serializers import CoalMineSerializer, EmissionSerializer, CarbonSinkSeria
 from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 
 class CoalMineCreateView(generics.ListCreateAPIView):
     queryset = CoalMine.objects.all()
     serializer_class = CoalMineSerializer
+    permission_classes = [AllowAny]
 
 
 class EmissionViewSet(generics.ListCreateAPIView):
     queryset = EmissionRecord.objects.all()
     serializer_class = EmissionSerializer
+    permission_classes = [AllowAny]
 
 class CarbonSinkListCreateView(generics.ListCreateAPIView):
     queryset = CarbonSink.objects.all()
     serializer_class = CarbonSinkSerializer
+    permission_classes = [AllowAny]
 
 class GapAnalysisView(APIView):
     def post(self, request):

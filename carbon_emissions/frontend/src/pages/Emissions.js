@@ -28,27 +28,24 @@ const Emissions = () =>{
     };
 
     return (
-        <div
-      className="d-flex flex-column justify-content-center align-items-center vh-100"
+      <div className="d-flex flex-column justify-content-center align-items-center vh-100"
       style={{
         background: "linear-gradient(135deg, #f0fdf4, #d9f7be)"
       }}
-    >
-      {/* Project Name */}
-      <h1 className="text-success text-center display-3 mb-4">
-        QuantC
-      </h1>
+      >
+        <h1 className="text-success text-center display-3 mb-4">
+          QuantC
+        </h1>
 
-      {/* Responsive Card Container */}
-      <div className="card shadow w-50">
-        <div className="card-header bg-white text-success text-center" style={{ borderRadius: "15px 15px 0 0"}}>
-          <h2>Enter Emission Details</h2>
-        </div>
+        <div className="card shadow w-50">
+          <div className="card-header bg-white text-success text-center" style={{ borderRadius: "15px 15px 0 0"}}>
+            <h2>Enter Emission Details</h2>
+          </div>
 
-        <div className="card-body p-4">
-          <form onSubmit={handleSubmit}>
-            <div className="form-floating mb-3">
-              <input
+          <div className="card-body p-4">
+            <form onSubmit={handleSubmit}>
+              <div className="form-floating mb-3">
+                <input
                 type="number"
                 className="form-control"
                 id="excavationTonnes"
@@ -56,12 +53,12 @@ const Emissions = () =>{
                 placeholder="Excavation in tonnes"
                 onChange={handleChange}
                 required
-              />
-              <label htmlFor="excavationTonnes">Excavation data</label>
-            </div>
+                />
+                <label htmlFor="excavationTonnes">Excavation data</label>
+              </div>
 
-            <div className="form-floating mb-3">
-              <input
+              <div className="form-floating mb-3">
+                <input
                 type="number"
                 className="form-control"
                 id="transportationCost"
@@ -69,23 +66,32 @@ const Emissions = () =>{
                 placeholder="Cost for transport"
                 onChange={handleChange}
                 required
-              />
-              <label htmlFor="transportationCost">Cost of transport</label>
-            </div>
+                />
+                <label htmlFor="transportationCost">Cost of transport</label>
+              </div>
 
-            <div className="form-floating mb-3">
-              <input type="number"
-              id = "fuelUsage"
-              name = "fuel_usage_liters"
-              placeholder="Fuel Usage in Liters"
-              onChange={handleChange}
-              required></input>
-              <label htmlFor="mine_type">Fuel usage</label>
-            </div>
-            <button type="submit" className="btn btn-success w-100 fw-bold">
-              Submit
-            </button>
-          </form>
+              <div className="form-floating mb-3">
+                <input type="number"
+                id="fuelUsage"
+                name="fuel_usage_liters"
+                placeholder="Fuel Usage in Liters"
+                onChange={handleChange}
+                required></input>
+                <label htmlFor="fuelUsage">Fuel usage</label>
+              </div>
+              <button type="submit" className="btn btn-success w-100 fw-bold">
+                Submit
+              </button>
+            </form>
+
+            <h2>Emission Records</h2>
+            <ul className="list-group">
+                {emissions.map((emission) => (
+                    <li className="list-group-item" key={emission.id}>
+                        Record #{emission.id}: {emission.total_emissions_kg} kg CO2e
+                    </li>
+                ))}
+            </ul>
         </div>
       </div>
     </div>

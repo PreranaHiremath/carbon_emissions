@@ -66,7 +66,7 @@ const CarbonSink = () => {
                 onChange={handleChange}
                 required
               >
-                <option value="">Select Mine Type</option>
+                <option value="">Select Mine Location</option>
                 <option value="jharkhand">Jharkhand</option>
                 <option value="rajasthan">Rajasthan</option>
                 <option value="assam">Assam</option>
